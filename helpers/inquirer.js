@@ -10,31 +10,15 @@ const questions = [
         message: 'What do you want to do?',
         choices: [
             {
-                value: '1',
-                name: `${'1.'.green} Create task`
+                value: 1,
+                name: `${'1.'.green} Find a city`
             },
             {
-                value: '2',
-                name: `${'2.'.green} List tasks`
+                value: 2,
+                name: `${'2.'.green} History`
             },
             {
-                value: '3',
-                name: `${'3.'.green} List completed tasks`
-            },
-            {
-                value: '4',
-                name: `${'4.'.green} List pending tasks`
-            },
-            {
-                value: '5',
-                name: `${'5.'.green} Complete task(s)`
-            },
-            {
-                value: '6',
-                name: `${'6.'.green} Delete task`
-            },
-            {
-                value: '0',
+                value: 0,
                 name: `${'0.'.green} Exit`
             }
         ]
@@ -81,14 +65,12 @@ export const readInput = async (message) => {
     return description;
 }
 
-export const listTasksDelete = async (tasks = []) => {
-    const choices = tasks.map((task, i) => {
+export const listPlaces = async (places = []) => {
+    const choices = places.map((place, i) => {
         const idx = `${i + 1}`;
         return {
-            value: task.id,
-            name: `${(idx + '.').green} ${task.description} -> ${task.completed
-                ? "Completed".green
-                : "Pending".red}`
+            value: place.id,
+            name: `${(idx + '.').green} ${place.name}`
         }
     });
     choices.unshift({
@@ -99,7 +81,7 @@ export const listTasksDelete = async (tasks = []) => {
         {
             type: 'list',
             name: 'id',
-            message: 'Delete',
+            message: 'Select a place',
             choices
         }
     ];
